@@ -22,9 +22,14 @@ app.service('Stocks', function($http){
     var promise = $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=${symbolAdd}&jsoncallback=JSON_CALLBACK`);
     promise.then(function(res){
       console.log(res);
+     if (res.data.Message){
+        swal("Stock symbol is non existent, please search");
+      }
+    else{
       thisStock.stocks.push(res);
       swal("Your Stock Has Been Added")
       location.href= '/#/list'
+      }
     });
     };
 
