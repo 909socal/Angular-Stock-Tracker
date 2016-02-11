@@ -17,18 +17,30 @@ app.service('Stocks', function($http){
     this.stocks = [];
   };
   var thisStock = this;
+  var names = [];
+
 
   this.addStock = function(symbolAdd){
     var promise = $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=${symbolAdd}&jsoncallback=JSON_CALLBACK`);
     promise.then(function(res){
-      console.log(res);
-     if (res.data.Message){
+    console.log(names);
+
+
+    if(names.indexOf(res.data.Symbol) > 0){
+      swal("Stock is already in list")
+
+    }
+    else if (res.data.Message){
         swal("Stock symbol is non existent, please search");
       }
     else{
       thisStock.stocks.push(res);
+      names.push(res.data.Symbol);
+
       swal("Your Stock Has Been Added")
       location.href= '/#/list'
+      console.log(res.data.Symbol);
+      console.log(names.indexOf(res.data.Symbol));
       }
     });
     };
@@ -40,19 +52,19 @@ app.service('Stocks', function($http){
 
   this.deleteFromAray = function (index){
     thisStock.stocks.splice(index, 1);
-    console.log('index', index);
+    //console.log('index', index);
     swal("Deleted")
   }
 });
 
 app.controller('listCtrl', function($scope, $state, Stocks){
-  console.log(Stocks.stocks)
+  //console.log(Stocks.stocks)
   $scope.stocks = Stocks.stocks;
 
 
  $scope.deleteName = function(value){
   var index = this.$index;
-  console.log(index);
+  //console.log(index);
   Stocks.deleteFromAray(index)
   }
 
