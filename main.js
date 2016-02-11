@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
-app.service('Stocks', function($http){
+app.service('Stocks', function($http, $state){
   if (!this.stockSymbols){
     this.stocks = [];
   };
@@ -38,7 +38,7 @@ app.service('Stocks', function($http){
         names.push(res.data.Symbol);
 
         swal("Your Stock Has Been Added")
-        location.href= '/#/list'
+        $state.go('list')
         console.log(res.data.Symbol);
         console.log(names.indexOf(res.data.Symbol));
       }
