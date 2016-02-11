@@ -17,7 +17,7 @@ app.service('Stocks', function($http){
     this.stocks = [];
   };
   var thisStock = this;
-  var names = [];
+  var names = ['apple'];
 
 
   this.addStock = function(symbolAdd){
