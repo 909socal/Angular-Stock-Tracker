@@ -1,0 +1,33 @@
+<div ng-controller="listCtrl">
+  <div ng-if="!stocks.length">
+    <br>
+    <h1>No stocks currently ... Add a Stock</h1>
+  </div>
+  </div>
+  <div ng-if="stocks.length">
+    <h1>Stocks</h1>
+    <table class="table" ng-if="stocks.length">
+      <thead>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Change</th>
+        <th>Last Price</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="stock in stocks">
+          <td>{{stock.data.Symbol}}</td>
+          <td>{{stock.data.Name}}</td>
+          <td>{{stock.data.Change}}</td>
+          <td>{{stock.data.LastPrice}}</td>
+          <td>{{stock.data.High}}</td>
+          <td>{{stock.data.Low}}</td>
+          <td> <button class= 'btn btn-danger' ng-click="deleteName()">Delete</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

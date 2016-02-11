@@ -1,0 +1,35 @@
+<br>
+<br>
+<h3>Add Symbol for a Stock Listing</h3>
+<div ng-controller="addCtrl">
+<form role="form">
+  <div class="form-group">
+    <label for="email">1. Search for Stock Symbol </label>
+    <input type="text" ng-model="search" class="form-control">
+    <button type="submit" ng-click="symbolSearch()" class="btn btn-default">Submit</button>
+  </div>
+ </form>
+
+  <div class="ng-hide" ng-show="showTable">
+    <table class="table" >
+      <thead>
+        <th>Name of Stock</th>
+        <th>Symbol of Stock</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="stock in searchResults">
+          <td>{{stock.Name}}</td>
+          <td>{{stock.Symbol}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <form role="form">
+  <div class="form-group">
+    <label for="email">2. Add Symbol </label>
+    <input type="text" ng-model="symbol" class="form-control">
+    <button type="submit" ng-click="addSymbol()" class="btn btn-default">Submit</button>
+  </div>
+ </form>
+</div>
